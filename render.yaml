@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: smart-parking-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false          # Set this manually in Render dashboard
+      - key: PORT
+        value: 10000         # Render uses port 10000 by default
+      - key: FRONTEND_URL
+        sync: false          # Set to your Vercel URL after deploying frontend
+      - key: VAPID_PUBLIC_KEY
+        sync: false          # Optional: for Web Push notifications
+      - key: VAPID_PRIVATE_KEY
+        sync: false          # Optional: for Web Push notifications
+      - key: VAPID_SUBJECT
+        sync: false          # e.g. mailto:your@email.com
+    healthCheckPath: /
+    autoDeploy: true
